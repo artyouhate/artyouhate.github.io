@@ -1,9 +1,9 @@
 body {
-    background-color: rgba(173, 216, 230, 0.607);
+    background-color: rgba(173, 230, 200, 0.607);
     text-align: center;
   }
   
   h1 {
-    color: rgb(2, 0, 139);
-    font-size: 300px;
+    color: rgb(139, 0, 72);
+    font-size: 100px;
   }
