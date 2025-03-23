@@ -32,47 +32,68 @@
 
   <h2 id="typewriter">Charcoal & Scribble Art Creations</h2>
 
-  <img src="photo-output_0 10.png" alt="Grande image" class="big-image">
+  <div class="image-pair first-pair">
+    <img src="photo-output_0 10.png" alt="Image 1">
+    <img src="photo-output_1 11.png" alt="Image 2">
+  </div>
+  
+  <div class="image-pair fade-in">
+    <img src="photo-output_2 10.png" alt="Image 3">
+    <img src="photo-output_3 8.png" alt="Image 4">
+  </div>
 
   <script>
+    let typewriterPlayed = false;
+
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
 
-          // Lancer l'effet d'écriture uniquement pour le h2
-          if (entry.target.id === "typewriter") {
-            typeWriterEffect(entry.target);
-          }
-        }
-      });
-    }, { threshold: 0.1 });
+      if (entry.target.id === "typewriter" && !typewriterPlayed) {
+        typeWriterEffect(entry.target);
+        typewriterPlayed = true;
+      }
 
-    // Observer uniquement les éléments à fade-in
-    const hiddenElements = document.querySelectorAll('.fade-in');
-    hiddenElements.forEach(el => observer.observe(el));
-
-    // Observer aussi le H2 pour lancer l'écriture
-    const h2 = document.getElementById('typewriter');
-    observer.observe(h2);
-
-    // Fonction typewriter
-    function typeWriterEffect(element) {
-      const text = element.textContent;
-      element.textContent = '';
-      let i = 0;
-      const speed = 70;
-
-      setTimeout(() => {
-        const interval = setInterval(() => {
-          element.textContent += text.charAt(i);
-          i++;
-          if (i >= text.length) {
-            clearInterval(interval);
-          }
-        }, speed);
-      }, 2000); // 1000ms = 1 seconde
+      // Les autres images après ready
+      if (entry.target.classList.contains('ready')) {
+        entry.target.classList.add('visible');
+      }
     }
+  });
+}, { threshold: 0.1 });
+
+const otherPairs = document.querySelectorAll('.fade-in');
+otherPairs.forEach(pair => observer.observe(pair));
+
+const h2 = document.getElementById('typewriter');
+observer.observe(h2);
+
+function typeWriterEffect(element) {
+  const text = element.textContent;
+  element.textContent = '';
+  let i = 0;
+  const speed = 70;
+
+  const interval = setInterval(() => {
+    element.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+
+      // Fade-in de la première paire
+      const firstPair = document.querySelector('.first-pair');
+      firstPair.classList.add('visible');
+
+      // Fade-in de l'image titre (logo)
+      const logo = document.querySelector('.logo-image');
+      logo.classList.add('visible');
+
+      // Donner .ready aux autres paires
+      const otherPairs = document.querySelectorAll('.fade-in');
+      otherPairs.forEach(pair => pair.classList.add('ready'));
+    }
+  }, speed);
+}
   </script>
 
 </body>

@@ -30,20 +30,34 @@ h2 {
   height: auto;
   display: block;
   margin: 70px auto 0 auto;
+  opacity: 0;
+  transition: opacity 2s ease;
 }
 
 .fade-in {
   opacity: 0;
-  transition: opacity 8s ease;
+  transition: opacity 2s ease;
 }
 
 .fade-in.visible {
   opacity: 1;
 }
 
-.big-image {
-  width: 1000px;
+.image-pair {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 220px;
+  margin-top: 150px;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.image-pair.visible {
+  opacity: 1;
+}
+
+.image-pair img {
+  width: 850px;
   height: auto;
-  margin: 130px auto 0 auto;
-  display: block;
 }
