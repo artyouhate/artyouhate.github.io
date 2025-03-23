@@ -26,10 +26,25 @@
 
 <body>
 
-  <h1>Bienvenue là</h1>
-  <button>Cliquer ici</button>
+  <h1 class="hidden-title">ART YOU HATE</h1> 
 
-  <script src="script.js"></script>
+  <img src="photo-output-32.png" alt="ART YOU HATE logo" class="logo-image fade-in">
+  <h2 class="fade-in">Charcoal & Scribble Art Creations</h2>
+
+  <script>
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const hiddenElements = document.querySelectorAll('.fade-in');
+  hiddenElements.forEach(el => observer.observe(el));
+
+</script>
   
 </body>
 
