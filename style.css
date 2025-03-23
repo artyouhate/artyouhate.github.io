@@ -22,20 +22,28 @@ h2 {
   font-weight: normal;
   margin-top: 60px;
   color: white;
+  min-height: 50px;
 }
 
 .logo-image {
   width: 1000px;
   height: auto;
   display: block;
-  margin: 45px auto 0 auto;
+  margin: 70px auto 0 auto;
 }
 
 .fade-in {
   opacity: 0;
-  transition: opacity 7s ease;
+  transition: opacity 8s ease;
 }
 
 .fade-in.visible {
   opacity: 1;
+}
+
+.big-image {
+  width: 1000px;
+  height: auto;
+  margin: 130px auto 0 auto;
+  display: block;
 }
