@@ -48,7 +48,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 220px;
+  gap: 20svh;
   flex-wrap: wrap;
   margin-top: 150px;
   opacity: 0;
