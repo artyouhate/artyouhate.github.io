@@ -21,22 +21,21 @@ h2 {
   font-size: 35px;
   font-weight: normal;
   margin-top: 60px;
+  color: white;
 }
 
 .logo-image {
   width: 1000px;
   height: auto;
   display: block;
-  margin: 40px auto 0 auto;
+  margin: 45px auto 0 auto;
 }
 
 .fade-in {
   opacity: 0;
-  transform: translateY(20px); /* Décale un peu vers le bas pour l'effet */
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 9s ease;
 }
 
 .fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
 }

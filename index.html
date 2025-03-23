@@ -17,7 +17,7 @@
   <link rel="icon" href="imagesite.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 
-  <meta property="og:title" content="Mon Site">
+  <meta property="og:title" content="Mon site">
   <meta property="og:description" content="willow la plus belle">
   <meta property="og:image" content="image/imagee.jpg">
   <meta property="og:url" content="https://artyouhate.github.io">
@@ -29,23 +29,49 @@
   <h1 class="hidden-title">ART YOU HATE</h1> 
 
   <img src="photo-output-32.png" alt="ART YOU HATE logo" class="logo-image fade-in">
-  <h2 class="fade-in">Charcoal & Scribble Art Creations</h2>
 
+  <h2 id="typewriter">Charcoal & Scribble Art Creations</h2>
+
+  <!-- Script -->
   <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+          // Lancer l'effet d'écriture uniquement pour le h2
+          if (entry.target.id === "typewriter") {
+            typeWriterEffect(entry.target);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
 
-  const hiddenElements = document.querySelectorAll('.fade-in');
-  hiddenElements.forEach(el => observer.observe(el));
+    // Observer uniquement les éléments à fade-in
+    const hiddenElements = document.querySelectorAll('.fade-in');
+    hiddenElements.forEach(el => observer.observe(el));
 
-</script>
-  
+    // Observer aussi le H2 pour lancer l'écriture
+    const h2 = document.getElementById('typewriter');
+    observer.observe(h2);
+
+    // Fonction typewriter
+    function typeWriterEffect(element) {
+      const text = element.textContent;
+      element.textContent = '';
+      let i = 0;
+      const speed = 70;
+
+      const interval = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+        }
+      }, speed);
+    }
+  </script>
+
 </body>
 
 </html>
