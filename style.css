@@ -71,6 +71,7 @@ h2 {
 
   .logo-image {
     margin: 30px auto 0 auto;
+    width: 70%;
   }
 
   h2 {
@@ -79,7 +80,7 @@ h2 {
   }
 
   .image-pair {
-    gap: 30px;
+    gap: 60px;
     margin-top: 60px;
   }
 
