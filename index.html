@@ -110,15 +110,12 @@ function typeWriterEffect(element) {
     if (i >= text.length) {
       clearInterval(interval);
 
-      // Fade-in de la première paire
       const firstPair = document.querySelector('.first-pair');
       firstPair.classList.add('visible');
 
-      // Fade-in de l'image titre (logo)
       const logo = document.querySelector('.logo-image');
       logo.classList.add('visible');
 
-      // Donner .ready aux autres paires
       const otherPairs = document.querySelectorAll('.fade-in');
       otherPairs.forEach(pair => pair.classList.add('ready'));
     }
