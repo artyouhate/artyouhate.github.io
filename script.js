@@ -1,26 +1,10 @@
 let typewriterPlayed = false;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-
-      if (entry.target.id === "typewriter" && !typewriterPlayed) {
-        typeWriterEffect(entry.target);
-        typewriterPlayed = true;
-      }
-
-      if (entry.target.classList.contains('ready')) {
-        entry.target.classList.add('visible');
-      }
-    }
-  });
-}, { threshold: 0.1 });
-
-const otherPairs = document.querySelectorAll('.fade-in');
-otherPairs.forEach(pair => observer.observe(pair));
-
 const h2 = document.getElementById('typewriter');
-observer.observe(h2);
+const firstPair = document.querySelector('.first-pair');
+const logo = document.querySelector('.logo-image');
+const otherPairs = document.querySelectorAll('.fade-in');
+const social = document.querySelector('.social-links');
 
 function typeWriterEffect(element) {
   const text = element.textContent;
@@ -33,18 +17,32 @@ function typeWriterEffect(element) {
     i++;
     if (i >= text.length) {
       clearInterval(interval);
-
-      const firstPair = document.querySelector('.first-pair');
-      firstPair.classList.add('visible');
-
-      const logo = document.querySelector('.logo-image');
-      logo.classList.add('visible');
-
-      const otherPairs = document.querySelectorAll('.fade-in');
-      otherPairs.forEach(pair => pair.classList.add('ready'));
-
-      const social = document.querySelector('.social-links');
-      if (social) social.classList.add('visible');
+      revealInitialElements();
     }
-  }, speed); 
+  }, speed);
 }
+
+function revealInitialElements() {
+  firstPair.classList.add('visible');
+  logo.classList.add('visible');
+  otherPairs.forEach(pair => pair.classList.add('ready'));
+  if (social) social.classList.add('visible');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.id === "typewriter" && !typewriterPlayed) {
+        typeWriterEffect(entry.target);
+        typewriterPlayed = true;
+      }
+
+      if (entry.target.classList.contains('ready')) {
+        entry.target.classList.add('visible');
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+otherPairs.forEach(pair => observer.observe(pair));
+observer.observe(h2);
