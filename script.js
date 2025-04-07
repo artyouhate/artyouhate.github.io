@@ -16,11 +16,26 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-const otherPairs = document.querySelectorAll('.fade-in');
-otherPairs.forEach(pair => observer.observe(pair));
-
 const h2 = document.getElementById('typewriter');
 observer.observe(h2);
+
+// Si petit écran, appliquer le fade-in image par image
+if (window.innerWidth <= 768) {
+  const pairs = document.querySelectorAll('.image-pair');
+
+  pairs.forEach(pair => {
+    pair.classList.remove('fade-in'); // Retirer le fade-in du conteneur
+
+    const images = pair.querySelectorAll('img');
+    images.forEach(img => {
+      img.classList.add('fade-in');    // Ajouter le fade-in à chaque image
+      observer.observe(img);           // Observer chaque image individuellement
+    });
+  });
+} else {
+  const otherPairs = document.querySelectorAll('.fade-in');
+  otherPairs.forEach(pair => observer.observe(pair)); // comportement normal
+}
 
 function typeWriterEffect(element) {
   const text = element.textContent;
@@ -40,8 +55,8 @@ function typeWriterEffect(element) {
       const logo = document.querySelector('.logo-image');
       logo.classList.add('visible');
 
-      const otherPairs = document.querySelectorAll('.fade-in');
-      otherPairs.forEach(pair => pair.classList.add('ready'));
+      const otherElements = document.querySelectorAll('.fade-in');
+      otherElements.forEach(el => el.classList.add('ready'));
     }
   }, speed);
 }
