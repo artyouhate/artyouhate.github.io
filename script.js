@@ -42,6 +42,9 @@ function typeWriterEffect(element) {
 
       const otherPairs = document.querySelectorAll('.fade-in');
       otherPairs.forEach(pair => pair.classList.add('ready'));
+
+      const social = document.querySelector('.social-links');
+      if (social) social.classList.add('visible');
     }
-  }, speed);
+  }, speed); 
 }

@@ -21,7 +21,6 @@ h2 {
   font-size: 35px;
   font-weight: normal;
   margin-top: 60px;
-  color: white;
   min-height: 50px;
 }
 
@@ -51,8 +50,6 @@ h2 {
   gap: 220px;
   flex-wrap: wrap;
   margin-top: 150px;
-  opacity: 0;
-  transition: opacity 2s ease;
 }
 
 .image-pair.visible {
@@ -66,7 +63,6 @@ h2 {
 }
 
 @media (max-width: 768px) {
-
   .logo-image {
     margin: 30px auto 0 auto;
     width: 60%;
@@ -85,4 +81,28 @@ h2 {
   .image-pair img {
     width: 80%;
   }
+}
+
+.social-links {
+  margin: 100px 0 100px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.social-links.visible {
+  opacity: 1;
+}
+
+.social-links img {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.35); 
 }
